@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Multilingual Academic Portal – Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #64748b;
+      --success: #10b981;
+      --background: #f8fafc;
+      --surface: #ffffff;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 4rem;
+      padding: 3rem 0;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      border-radius: 20px;
+      margin: 2rem auto 4rem;
+      max-width: 1000px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .home-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .card {
+      background: var(--surface);
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -1px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .card p {
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .card a {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .card a:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .languages-section {
+      background: var(--surface);
+      padding: 2rem;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+
+    .languages-section h3 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    .language-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .language-item {
+      background: var(--background);
+      padding: 0.75rem;
+      border-radius: 8px;
+      text-align: center;
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .feature {
+      background: var(--surface);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .feature h4 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-light);
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      .home-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🌍 Multilingual Academic Doubt Solver</h1>
+    </header>
+
+    <div class="home-cards">
+      <div class="card">
+        <h2>🤔 Ask a Doubt</h2>
+        <p>Ask your academic questions in your native language. Our system will translate and provide instant, accurate answers with context.</p>
+        <a href="/ask">Go to Doubt Solver</a>
+      </div>
+      <div class="card">
+        <h2>📝 Take a Quiz</h2>
+        <p>Test your knowledge with interactive quizzes in multiple languages. Choose your subject, difficulty, and preferred language.</p>
+        <a href="/quiz_enhanced">Start Quiz</a>
+      </div>
+    </div>
+
+</body>
+</html>
