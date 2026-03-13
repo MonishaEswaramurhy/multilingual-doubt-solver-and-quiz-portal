@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Page</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container card-like">
+    <h2>Start Your Quiz</h2>
+    <form action="/start_quiz" method="POST" class="form">
+      <label for="class">Select Class:</label>
+      <select name="class" id="class" required>
+        <option value="">--Select Class--</option>
+        {% for i in classes %}
+        <option value="{{ i }}">Class {{ i }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="subject">Select Subject:</label>
+      <select name="subject" id="subject" required>
+        <option value="">--Select Subject--</option>
+      </select>
+
+      <label for="language">Select Language:</label>
+      <select name="language" required>
+        <option value="en">English</option>
+        <option value="hi">Hindi</option>
+        <option value="ta">Tamil</option>
+      </select>
+
+      <label for="difficulty">Select Difficulty:</label>
+      <select name="difficulty" required>
+        <option value="easy">Easy</option>
+        <option value="moderate">Moderate</option>
+        <option value="hard">Hard</option>
+      </select>
+
+      <button type="submit">Begin Quiz</button>
+    </form>
+  </div>
+
+  <script>
+    const subjectOptions = {
+      1: ["Math", "English"],
+      2: ["Math", "EVS"],
+      3: ["Math", "EVS"],
+      4: ["Math", "Science", "English"],
+      5: ["Math", "Science", "English"],
+      6: ["Math", "Science", "Social"],
+      7: ["Math", "Science", "Social", "English"],
+      8: ["Math", "Science", "Social", "English"],
+      9: ["Math", "Science", "Social", "History"],
+      10: ["Math", "Science", "Social", "History"],
+      11: ["Maths", "Physics", "Chemistry", "Biology", "CS", "Economics"],
+      12: ["Maths", "Physics", "Chemistry", "Biology", "CS", "Economics"]
+    };
+
+    document.getElementById("class").addEventListener("change", function () {
+      const selectedClass = this.value;
+      const subjectSelect = document.getElementById("subject");
+      subjectSelect.innerHTML = '<option value="">--Select Subject--</option>';
+
+      if (subjectOptions[selectedClass]) {
+        subjectOptions[selectedClass].forEach(subject => {
+          const opt = document.createElement("option");
+          opt.value = subject.toLowerCase();
+          opt.text = subject;
+          subjectSelect.appendChild(opt);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

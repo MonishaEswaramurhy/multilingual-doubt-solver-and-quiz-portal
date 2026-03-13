@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Quiz - Multilingual Academic Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        .quiz-form {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background: var(--surface);
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .language-option {
+            padding: 0.25rem 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .language-option:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .language-option.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Enhanced Quiz Portal</h1>
+            <p>Test your knowledge in multiple languages with our comprehensive quiz system</p>
+        </div>
+
+        <form class="quiz-form" action="/start_quiz" method="POST">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="class">Class Level</label>
+                    <select name="class" id="class" required>
+                        <option value="">Select Class</option>
+                        {% for i in classes %}
+                        <option value="{{ i }}">Class {{ i }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select name="subject" id="subject" required>
+                        <option value="">Select Subject</option>
+                        {% for subject in subjects %}
+                        <option value="{{ subject.lower() }}">{{ subject }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="difficulty">Difficulty Level</label>
+                    <select name="difficulty" id="difficulty" required>
+                        <option value="">Select Difficulty</option>
+                        {% for difficulty in difficulties %}
+                        <option value="{{ difficulty.lower() }}">{{ difficulty }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="language">Language</label>
+                    <select name="language" id="language" required>
+                        <option value="en">English</option>
+                        {% for code, name in languages.items() %}
+                        {% if code != 'en' %}
+                        <option value="{{ code }}">{{ name }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                🚀 Start Quiz
+            </button>
+        </form>
+
+    </div>
+
+    <script>
+        // Dynamic subject loading based on class
+        document.getElementById('class').addEventListener('change', function() {
+            const selectedClass = this.value;
+            const subjectSelect = document.getElementById('subject');
+            
+            // Clear current options
+            subjectSelect.innerHTML = '<option value="">Select Subject</option>';
+            
+            if (selectedClass) {
+                const subjects = getSubjectsForClass(selectedClass);
+                subjects.forEach(subject => {
+                    const option = document.createElement('option');
+                    option.value = subject.toLowerCase();
+                    option.textContent = subject;
+                    subjectSelect.appendChild(option);
+                });
+            }
+        });
+
+        function getSubjectsForClass(classLevel) {
+            const subjectMap = {
+                1: ['Math', 'English', 'EVS'],
+                2: ['Math', 'English', 'EVS'],
+                3: ['Math', 'English', 'EVS'],
+                4: ['Math', 'Science', 'English', 'Social Studies'],
+                5: ['Math', 'Science', 'English', 'Social Studies'],
+                6: ['Math', 'Science', 'English', 'Social Studies'],
+                7: ['Math', 'Science', 'English', 'Social Studies'],
+                8: ['Math', 'Science', 'English', 'Social Studies'],
+                9: ['Math', 'Science', 'English', 'Social Studies', 'History'],
+                10: ['Math', 'Science', 'English', 'Social Studies', 'History'],
+                11: ['Maths', 'Physics', 'Chemistry', 'Biology', 'Computer Science', 'Economics'],
+                12: ['Maths', 'Physics', 'Chemistry', 'Biology', 'Computer Science', 'Economics']
+            };
+            
+            return subjectMap[classLevel] || ['Math', 'Science', 'English'];
+        }
+
+        // Form validation
+        document.querySelector('.quiz-form').addEventListener('submit', function(e) {
+            const classLevel = document.getElementById('class').value;
+            const subject = document.getElementById('subject').value;
+            const difficulty = document.getElementById('difficulty').value;
+            const language = document.getElementById('language').value;
+            
+            if (!classLevel || !subject || !difficulty || !language) {
+                e.preventDefault();
+                alert('Please fill in all fields before starting the quiz.');
+                return false;
+            }
+        });
+    </script>
+</body>
+</html>
+
